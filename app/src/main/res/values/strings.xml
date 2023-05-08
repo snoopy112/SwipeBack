@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SwipeBack</string>
+
+    <string name="service_switch">Start Service</string>
+    <string name="enable_access_str">Accessibility Settings</string>
+    <string name="enable_overlay_str">Overlay Permission</string>
+
+    <string name="accessibility_service_label">Swipe Back Service</string>
+    <string name="accessibility_service_description">SwipeBack service adds Back function by short swipe up and show Recent Apps by long swipe up</string>
+</resources>
