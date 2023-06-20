@@ -19,8 +19,6 @@ public class MainActivity extends Activity {
 
     private static final String TAG = "MainActivity";
 
-    private TextView enableAccess, enableOverlay;
-
     private Switch startSwitch;
 
     @Override
@@ -33,11 +31,11 @@ public class MainActivity extends Activity {
 
     private void initView() {
         Log.d(TAG, "initView");
-        startSwitch = (Switch) findViewById(R.id.start_switch);
+        startSwitch = findViewById(R.id.start_switch);
         startSwitch.setChecked(isMyServiceRunning(TouchWindowService.class));
 
-        enableAccess = (TextView) findViewById(R.id.enable_access);
-        enableOverlay = (TextView) findViewById(R.id.enable_overlay);
+        TextView enableAccess = findViewById(R.id.enable_access);
+        TextView enableOverlay = findViewById(R.id.enable_overlay);
 
         startSwitch.setOnClickListener(new View.OnClickListener() {
             @Override

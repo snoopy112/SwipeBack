@@ -52,12 +52,12 @@ public class TouchViewManager {
 
     private void setLayoutParams() {
         swipePillLayoutParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
-        swipePillLayoutParams.format = PixelFormat.RGBA_8888;
-        swipePillLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+        swipePillLayoutParams.format = PixelFormat.TRANSLUCENT;
+        swipePillLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL |
+                                      WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
 
         swipePillLayoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
-        swipePillLayoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        swipePillLayoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
         swipePillLayoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
     }
 
@@ -75,6 +75,16 @@ public class TouchViewManager {
 
 
     private final SwipePillView.ViewOnTouchListener viewOnTouchListener = new SwipePillView.ViewOnTouchListener() {
+
+        @Override
+        public void onTap(float x, float y) {
+            windowManager.removeView(swipePillView);
+
+            if (keyServiceListener != null)
+                keyServiceListener.tapOnScreen(x, y);
+
+            windowManager.addView(swipePillView, swipePillLayoutParams);
+        }
 
         @Override
         public void onBackTap() {
@@ -100,6 +110,7 @@ public class TouchViewManager {
     }
 
     public interface KeyServiceListener {
+        void tapOnScreen(float x, float y);
         void backKey();
         void homeKey();
         void recentKey();

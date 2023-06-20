@@ -4,6 +4,6 @@
                        android:accessibilityEventTypes="typeAllMask"
                        android:accessibilityFeedbackType="feedbackGeneric"
                        android:accessibilityFlags="flagDefault"
-                       android:canRetrieveWindowContent="true"
+                       android:canPerformGestures="true"
                        android:settingsActivity="com.snoopy112.swipeback.MainActivity"
         />

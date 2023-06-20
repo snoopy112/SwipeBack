@@ -1,7 +1,9 @@
 package com.snoopy112.swipeback;
 
 import android.accessibilityservice.AccessibilityService;
+import android.accessibilityservice.GestureDescription;
 import android.content.Intent;
+import android.graphics.Path;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import com.snoopy112.swipeback.ui.component.TouchViewManager;
@@ -20,6 +22,18 @@ public class SwipeBackService extends AccessibilityService implements TouchViewM
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {}
+
+    @Override
+    public void tapOnScreen(float x, float y) {
+        Log.d(TAG, "tapOnScreen");
+        Path clickPath = new Path();
+        clickPath.moveTo(x, y);
+        GestureDescription.StrokeDescription clickStroke =
+                new GestureDescription.StrokeDescription(clickPath, 10, 1);
+        GestureDescription.Builder clickBuilder = new GestureDescription.Builder();
+        clickBuilder.addStroke(clickStroke);
+        this.dispatchGesture(clickBuilder.build(), null, null);
+    }
 
     @Override
     public void backKey() {
