@@ -41,7 +41,9 @@ public class TouchViewManager {
     }
 
     public void removeView() {
-        windowManager.removeView(swipePillView);
+        Log.d(TAG, "removeView");
+        if (swipePillView != null)
+            windowManager.removeView(swipePillView);
     }
 
     public void showView() {
